@@ -96,7 +96,7 @@ public class DuckController : MonoBehaviour
     {
         if (collision.GetComponent<TortleScript>() != null)
         {
-            rb.AddForce(Vector2.up * (jumpStrenght * 2), ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * (jumpStrenght * 1.5f), ForceMode2D.Impulse);
             Destroy(collision.gameObject);
             audioSource.PlayOneShot(killSound);
         }
@@ -104,6 +104,10 @@ public class DuckController : MonoBehaviour
         {
             audioSource.PlayOneShot(coinSound);
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.layer == 8)
+        {
+            GameManager.instance.Win(this);
         }
 
     }

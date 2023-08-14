@@ -8,6 +8,7 @@ public class TortleScript : MonoBehaviour
     [SerializeField] private float speed = 4;
     [SerializeField] private float leftBound = 13f;
     [SerializeField] private float rightBound = 24f;
+    [SerializeField] private SpriteRenderer sprite;
 
     void Start()
     {
@@ -22,15 +23,25 @@ public class TortleScript : MonoBehaviour
         {
             transform.position = new Vector2(leftBound + 0.1f, transform.position.y);
             speed *= -1;
+            sprite.flipX = false;
         }
         if (transform.position.x > rightBound)
         {
             transform.position = new Vector2(rightBound - 0.1f, transform.position.y);
             speed *= -1;
+            sprite.flipX = true;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         speed *= -1;
+        if(sprite.flipX)
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
     }
 }

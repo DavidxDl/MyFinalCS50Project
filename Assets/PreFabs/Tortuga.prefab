@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 8214120594867476863}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3798250475838380477
 BoxCollider2D:
@@ -123,6 +123,7 @@ MonoBehaviour:
   speed: 4
   leftBound: 13
   rightBound: 23
+  sprite: {fileID: 5359714912035007877}
 --- !u!61 &3140785697232130365
 BoxCollider2D:
   m_ObjectHideFlags: 0
