@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private DuckController duck;
     [SerializeField] private List<Image> lives;
+    [SerializeField] private TextMeshProUGUI coinsText;
     private AudioSource audioSource;
     private Animator camAnimator;
+    private int coins = 0;
 
     void Awake()
     {
@@ -58,6 +60,12 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void AddCoins()
+    {
+        coins++;
+        coinsText.text = coins.ToString();
     }
 
     public void Win(DuckController duck)

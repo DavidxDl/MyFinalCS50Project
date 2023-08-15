@@ -98,13 +98,16 @@ public class DuckController : MonoBehaviour
     {
         if (collision.GetComponent<TortleScript>() != null)
         {
-            rb.AddForce(Vector2.up * (jumpStrenght * 1.5f), ForceMode2D.Impulse);
+            if (!invensible)
+                rb.velocity = Vector2.zero;
+                rb.AddForce(Vector2.up * (jumpStrenght * 1.3f), ForceMode2D.Impulse);
             Destroy(collision.gameObject);
             audioSource.PlayOneShot(killSound);
         }
         else if (collision.gameObject.layer == 7) // 7 is The coin Layer
         {
             audioSource.PlayOneShot(coinSound);
+            GameManager.instance.AddCoins();
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.layer == 8)
