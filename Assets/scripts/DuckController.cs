@@ -22,6 +22,8 @@ public class DuckController : MonoBehaviour
     private Vector2 moveDir = Vector2.zero;
     private int jumps = 0;
     private float bottomBound = -6.30f;
+    private bool invensible = false;
+    private float invensibilityTime = .5f;
 
 
     void Awake()
@@ -113,10 +115,20 @@ public class DuckController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.GetComponent<TortleScript>() != null)
+        if(collision.transform.GetComponent<TortleScript>() != null && !invensible)
         {
-            GameManager.instance.GameOver();
+            GameManager.instance.RemoveLife();
+            invensible = true;
+            StartCoroutine(Invensible());
+
+            //GameManager.instance.GameOver();
         }
+    }
+
+    IEnumerator Invensible()
+    {
+        yield return new WaitForSeconds(invensibilityTime);
+        invensible = false;
     }
 }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Cinemachine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,25 +13,56 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI thisWasCS50;
     [SerializeField] private AudioClip winClip;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private DuckController duck;
+    [SerializeField] private List<Image> lives;
     private AudioSource audioSource;
+    private Animator camAnimator;
 
     void Awake()
     {
         instance = this;
         audioSource = GetComponent<AudioSource>();
-
+        camAnimator = virtualCamera.GetComponent<Animator>();
     }
+
+
 
     public void GameOver()
     {
         audioSource.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RemoveLife()
+    {
+        int length = lives.Count;
+        if (length == 0)
+        {
+            GameOver();
+            return;
+        }
+        for(int i = length -1; i >= 0; i--)
+        {
+            Image live = lives[i];
+            if(live.gameObject.activeInHierarchy == true)
+            {
+                audioSource.Play();
+                live.gameObject.SetActive(false);
+                lives.Remove(live);
+                return;
+            }
+        }
+    }
 
     public void Win(DuckController duck)
     {
-        float timer = 0;
-        timer += Time.deltaTime;
+        
         thisWasCS50.gameObject.SetActive(true);
         duck.enabled = false;
         StartCoroutine(IDelayRestart());
@@ -39,7 +72,8 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator IDelayRestart()
     {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(2);
+        virtualCamera.Follow = thisWasCS50.transform;
+        camAnimator.SetTrigger("Zoom");
     }
 }
