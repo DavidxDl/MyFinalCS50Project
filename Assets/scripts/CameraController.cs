@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform duck;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    [SerializeField] private float transitionSpeed = 5.0f;
+   // [SerializeField] private float transitionSpeed = 5.0f;
     private CinemachineFramingTransposer framingTransposer;
     private float onPlataformScreenY = 0.41f;
     private float onGroundScreenY = 0.71f;
@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 
     private float transitionTimer; // Timer for tracking the transition progress
     private float initialScreenY; // Starting Screen Y value for the transition
-    private float targetScreenY; // Target Screen Y value for the transition
+     private float targetScreenY; // Target Screen Y value for the transition
 
 
     private void Start()

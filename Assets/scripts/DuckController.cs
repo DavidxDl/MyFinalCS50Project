@@ -16,6 +16,7 @@ public class DuckController : MonoBehaviour
 
     private BoxCollider2D boxCollider;
     private AudioSource audioSource;
+    private OscillatingPlatform currentPlataform;
 
 
     private Rigidbody2D rb;
@@ -23,7 +24,7 @@ public class DuckController : MonoBehaviour
     private int jumps = 0;
     private float bottomBound = -6.30f;
     private bool invensible = false;
-    private float invensibilityTime = .5f;
+    private float invensibilityTime = 1f;
 
 
     void Awake()
@@ -48,6 +49,11 @@ public class DuckController : MonoBehaviour
         if (transform.position.y < bottomBound)
         {
             GameManager.instance.GameOver();
+        }
+        if(currentPlataform != null)
+        {
+            Vector2 plataformMovement = currentPlataform.GetPlatformMovement();
+            transform.position += (Vector3)plataformMovement;
         }
 
     }
@@ -99,8 +105,10 @@ public class DuckController : MonoBehaviour
         if (collision.GetComponent<TortleScript>() != null)
         {
             if (!invensible)
+            {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * (jumpStrenght * 1.3f), ForceMode2D.Impulse);
+            }
             Destroy(collision.gameObject);
             audioSource.PlayOneShot(killSound);
         }
@@ -120,11 +128,40 @@ public class DuckController : MonoBehaviour
     {
         if(collision.transform.GetComponent<TortleScript>() != null && !invensible)
         {
-            GameManager.instance.RemoveLife();
-            invensible = true;
-            StartCoroutine(Invensible());
+            GetHit();
 
             //GameManager.instance.GameOver();
+        }
+        if (collision.gameObject.CompareTag("Plataform"))
+        {
+            currentPlataform = collision.gameObject.GetComponent<OscillatingPlatform>();
+        }
+        if(collision.gameObject.CompareTag("Spikes"))
+        {
+            if (!invensible)
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(Vector2.up * (jumpStrenght * 1.1f), ForceMode2D.Impulse);
+            }
+            GetHit();
+        }
+        if (collision.gameObject.CompareTag("Saw"))
+            GetHit();
+
+    }
+
+    private void GetHit()
+    {
+        GameManager.instance.RemoveLife();
+        invensible = true;
+        StartCoroutine(Invensible());
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Plataform"))
+        {
+            currentPlataform = null;
         }
     }
 
