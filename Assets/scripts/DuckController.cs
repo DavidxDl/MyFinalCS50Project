@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class DuckController : MonoBehaviour
 {
@@ -38,7 +40,24 @@ public class DuckController : MonoBehaviour
     private void Update()
     {
         isGrounded();
-        if (Input.GetKeyDown(KeyCode.Space) && jumps < 1 )
+        HandleJump();
+
+
+        if (transform.position.y < bottomBound)
+        {
+            GameManager.instance.GameOver();
+        }
+        if (currentPlataform != null)
+        {
+            Vector2 plataformMovement = currentPlataform.GetPlatformMovement();
+            transform.position += (Vector3)plataformMovement;
+        }
+
+    }
+
+    private void HandleJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && jumps < 1)
         {
 
             jumps++;
@@ -46,17 +65,8 @@ public class DuckController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpStrenght, ForceMode2D.Impulse);
             audioSource.Play();
         }
-        if (transform.position.y < bottomBound)
-        {
-            GameManager.instance.GameOver();
-        }
-        if(currentPlataform != null)
-        {
-            Vector2 plataformMovement = currentPlataform.GetPlatformMovement();
-            transform.position += (Vector3)plataformMovement;
-        }
-
     }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -90,7 +100,7 @@ public class DuckController : MonoBehaviour
 
         float offset = .6f;
 
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size + new Vector3(.20f, 0, 0), 0f, Vector2.down, offset, layerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size - new Vector3(.2f, 0, 0), 0f, Vector2.down, offset, layerMask);
         if (rayCastHit.collider != null)
         {
             jumps = 0;
@@ -145,7 +155,7 @@ public class DuckController : MonoBehaviour
             }
             GetHit();
         }
-        if (collision.gameObject.CompareTag("Saw"))
+        if (collision.gameObject.CompareTag("Enemy"))
             GetHit();
 
     }

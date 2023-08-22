@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 2939522213747978306}
   - component: {fileID: 5349767571756096341}
   m_Layer: 8
-  m_Name: Text (TMP)
+  m_Name: ThisWasCS50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,7 +433,7 @@ Transform:
   - {fileID: 4371362577698879403}
   - {fileID: 1871964414607095343}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &897437337828702195
 BoxCollider2D:

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3790529513566585977}
   m_Layer: 0
   m_Name: Saw
-  m_TagString: Saw
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1558524242736219110
 SpriteRenderer:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ab5e69385356d489e560a2acf7a963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: {x: 0, y: 2}
+  amplitude: {x: 2.5, y: 0}
   frequency: 2.5
 --- !u!58 &3539494342281009584
 CircleCollider2D:
@@ -135,7 +135,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.73
+  m_Radius: 0.7
 --- !u!95 &3790529513566585977
 Animator:
   serializedVersion: 5
