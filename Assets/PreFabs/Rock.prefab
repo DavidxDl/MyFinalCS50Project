@@ -131,10 +131,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd8496dc347b224bbcffcc747a56258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground:
+  layer:
     serializedVersion: 2
     m_Bits: 8
-  speed: 170
+  player:
+    serializedVersion: 2
+    m_Bits: 64
+  speed: 60
+  rayDistance: 0.03
+  offset: 0
 --- !u!50 &2437863365337956723
 Rigidbody2D:
   serializedVersion: 4
@@ -150,7 +155,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 6
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -161,7 +166,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &6810664263225171016
 BoxCollider2D:
   m_ObjectHideFlags: 0

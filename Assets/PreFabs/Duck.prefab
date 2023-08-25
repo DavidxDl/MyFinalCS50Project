@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8189765016350782139}
   - component: {fileID: 8808903039553685891}
   - component: {fileID: 7366024886731009114}
+  - component: {fileID: 992751056631460130}
   m_Layer: 6
   m_Name: Duck
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &992751056631460130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496793697334995005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd5018b4d52da0459335b02f1f66d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duck: {fileID: 1934793982724735334}
 --- !u!1 &6089584716404051412
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +154,7 @@ Transform:
   m_Children:
   - {fileID: 8189765016350782139}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8905125845685912429
 Rigidbody2D:

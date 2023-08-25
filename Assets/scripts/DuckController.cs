@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +8,7 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class DuckController : MonoBehaviour
 {
-
+    public event EventHandler OnHit;
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpStrenght = 30f;
@@ -26,7 +27,8 @@ public class DuckController : MonoBehaviour
     private int jumps = 0;
     private float bottomBound = -6.30f;
     private bool invensible = false;
-    private float invensibilityTime = 1f;
+    private float invensibilityTime = 2f;
+    private int spikeLayer = 9;
 
 
     void Awake()
@@ -72,9 +74,6 @@ public class DuckController : MonoBehaviour
     {
         HandleMovement();
     }
-
-
-
 
 
     private void HandleMovement()
@@ -136,6 +135,8 @@ public class DuckController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
+
         if(collision.transform.GetComponent<TortleScript>() != null && !invensible)
         {
             GetHit();
@@ -145,8 +146,16 @@ public class DuckController : MonoBehaviour
         if (collision.gameObject.CompareTag("Plataform"))
         {
             currentPlataform = collision.gameObject.GetComponent<OscillatingPlatform>();
+            foreach (ContactPoint2D contactPoint in collision.contacts)
+            {
+                if (contactPoint.collider.CompareTag("Spikes"))
+                {
+                    Debug.Log("Player collided with an enemy!");
+                    GetHit();
+                }
+            }
         }
-        if(collision.gameObject.CompareTag("Spikes"))
+        if(collision.gameObject.CompareTag("Spikes") || collision.gameObject.layer == spikeLayer)
         {
             if (!invensible)
             {
@@ -162,9 +171,21 @@ public class DuckController : MonoBehaviour
 
     private void GetHit()
     {
-        GameManager.instance.RemoveLife();
-        invensible = true;
-        StartCoroutine(Invensible());
+        if (!invensible)
+        {
+            OnHit?.Invoke(this, EventArgs.Empty);
+            GameManager.instance.RemoveLife();
+
+            invensible = true;
+
+            StartCoroutine(Invensible());
+        }
+    }
+    IEnumerator Invensible()
+    {
+        yield return new WaitForSeconds(invensibilityTime);
+        OnHit?.Invoke(this, EventArgs.Empty);
+        invensible = false;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -175,11 +196,6 @@ public class DuckController : MonoBehaviour
         }
     }
 
-    IEnumerator Invensible()
-    {
-        yield return new WaitForSeconds(invensibilityTime);
-        invensible = false;
-    }
 }
 
 
