@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpStrenght: 16.1
-  layerMask:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 8
   sprite: {fileID: 8808903039553685891}
