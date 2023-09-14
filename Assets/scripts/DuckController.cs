@@ -21,6 +21,7 @@ public class DuckController : MonoBehaviour
     private AudioSource audioSource;
     private OscillatingPlatform currentPlataform;
     private Rigidbody2D rb;
+    private GameManager gameManager;
     private Vector2 moveDir = Vector2.zero;
 
     private int jumps = 0;
@@ -39,6 +40,11 @@ public class DuckController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        gameManager = GameManager.instance;
+    }
+
 
     private void Update()
     {
@@ -47,7 +53,7 @@ public class DuckController : MonoBehaviour
         HandleJump();
         Onplataform();
 
-        if (transform.position.y < bottomBound) GameManager.instance.GameOver();
+        if (transform.position.y < bottomBound) gameManager.GameOver();
     }
 
     private void Onplataform()
@@ -109,7 +115,7 @@ public class DuckController : MonoBehaviour
         if (!invensible)
         {
             OnHit?.Invoke(this, EventArgs.Empty);
-            GameManager.instance.RemoveLife();
+            gameManager.RemoveLife();
 
             invensible = true;
 
@@ -139,12 +145,12 @@ public class DuckController : MonoBehaviour
         else if (collision.gameObject.layer == coinLayer) // 7 is The coin Layer
         {
             audioSource.PlayOneShot(coinSound);
-            GameManager.instance.AddCoins();
+            gameManager.AddCoins();
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.layer == laptopLayer)
         {
-            GameManager.instance.Win(this);
+            gameManager.Win();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

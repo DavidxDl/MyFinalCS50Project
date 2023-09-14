@@ -1259,6 +1259,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6380819376814763680, guid: 5ad8fb03d2b150743ae12e1708da1df0, type: 3}
+      propertyPath: m_TagString
+      value: cs50text
+      objectReference: {fileID: 0}
     - target: {fileID: 7087824215624108326, guid: 5ad8fb03d2b150743ae12e1708da1df0, type: 3}
       propertyPath: m_Name
       value: Laptop
@@ -1801,9 +1805,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1927875106747589402, guid: 1cde6d0de9339db4b9df9aa62c56c23a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2263284988896530595, guid: 1cde6d0de9339db4b9df9aa62c56c23a, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704677374265268739, guid: 1cde6d0de9339db4b9df9aa62c56c23a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6581380150138218437, guid: 1cde6d0de9339db4b9df9aa62c56c23a, type: 3}
       propertyPath: m_Pivot.x
@@ -2074,7 +2086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6950219278007998243, guid: d44111343231ab040b255d7b11cbc813, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.33
+      value: 8.06
       objectReference: {fileID: 0}
     - target: {fileID: 6950219278007998243, guid: d44111343231ab040b255d7b11cbc813, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2636,7 +2648,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3e796bb0be493cf47b907df3c2d86943, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -36017,6 +36029,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4333680348951025749, guid: 690c38d14058e9e48a9043c48e38d3d9, type: 3}
       propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743856086824806451, guid: 690c38d14058e9e48a9043c48e38d3d9, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6833033559417611640, guid: 690c38d14058e9e48a9043c48e38d3d9, type: 3}

@@ -8,6 +8,8 @@ TagManager:
   - Spikes
   - Saw
   - Enemy
+  - cs50text
+  - Lives
   layers:
   - Default
   - TransparentFX

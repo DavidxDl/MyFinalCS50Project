@@ -11,4 +11,8 @@ public class MainMenuLogic : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Cansado()
+    {
+        Debug.Log("Am so Tired :(");
+    }
 }
