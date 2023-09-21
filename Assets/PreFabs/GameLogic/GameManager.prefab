@@ -45,14 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0410a43aa2303fb4bbccd0d84d018363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisWasCS50: {fileID: 0}
-  winClip: {fileID: 0}
-  virtualCamera: {fileID: 0}
-  duck: {fileID: 0}
+  canvas: {fileID: 0}
+  winClip: {fileID: 8300000, guid: 53b68572a22ff4646bd5918818458621, type: 3}
+  deathClip: {fileID: 8300000, guid: d4700decb34fc0249a035e2bd61ac1a0, type: 3}
   lives:
   - {fileID: 0}
   - {fileID: 0}
+  livesUI: {fileID: 0}
   coinsText: {fileID: 0}
+  liveImg: {fileID: 1644762124678600103, guid: 4c61024af12f3bf48bd541b8ef993020, type: 3}
 --- !u!82 &4784396585350107037
 AudioSource:
   m_ObjectHideFlags: 0
@@ -63,11 +64,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d4700decb34fc0249a035e2bd61ac1a0, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 7d53f2e35969d9e4b95d2c62911d49c7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.541
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

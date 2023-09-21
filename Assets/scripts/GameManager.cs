@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Cinemachine;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Canvas canvas;
     [SerializeField] private AudioClip winClip;
+    [SerializeField] private AudioClip deathClip;
+    [SerializeField] private AudioClip getHitClip;
     private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private List<Image> lives;
     [SerializeField] private GameObject livesUI;
@@ -47,7 +48,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        audioSource.Play();
+        audioSource.PlayOneShot(deathClip, 1);
+        audioSource.Stop();
         coins = 0;
         counterToGetLife = 0;
         coinsText.text = coins.ToString();
@@ -74,18 +76,20 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Remove Life Get Called");
         int length = lives.Count;
+
         if (length == 0)
         {
             GameOver();
             return;
         }
+
         for(int i = length -1; i >= 0; i--)
         {
             Debug.Log("in loop");
 
             Image live = lives[i];
             Debug.Log("if statement");
-            audioSource.Play();
+            audioSource.PlayOneShot(getHitClip, 1);
             Destroy(livesUI.transform.GetChild(0).gameObject);
             lives.Remove(live);
             return;
@@ -106,7 +110,9 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        audioSource.Stop();
         FindReferences();
+        audioSource.PlayOneShot(winClip, 1);
         thisWasCS50.gameObject.SetActive(true);
         duck.enabled = false;
         StartCoroutine(IDelayRestart());

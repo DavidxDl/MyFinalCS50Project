@@ -1,7 +1,5 @@
 using System;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Dropper : MonoBehaviour
 {
