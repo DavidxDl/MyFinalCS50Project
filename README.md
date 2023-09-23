@@ -1,3 +1,7 @@
+# Adventures of Duck50
+#### Video Demo:  <https://youtu.be/5wO04xTqXQU>
+
+
 <h1 align="center">Hi 👋, I'm David Elich</h1>
 <h3 align="center">A CS50 Sudent from Viña del Mar, Chile</h3>
 
@@ -17,6 +21,14 @@
 <p align="center">
   but there will be alot of obstacles in the way so be carefull!
 </p>
+<h5 align="middle">Process</h5>
+<p align="middle">i had to learn c# for this project, is similarto c, but you dont have to manually allocate memory.
+                  everything in this game engine is a game object, the player, the obstacles the ground etc, so you have to program as a object oriented programming patter, wich is cool,</p>
+<p align="middle">i move the caracter directly trough his trasform thing that is not that much used, but since is a tiny game i stick to it, the most popular way of moving the caracter is by doing it with physics, adding velocity to it, i'll do that for my next game, overall it was a good experience to work on it </p>
+
+<h3>Github Repo(https://github.com/DavidxDl/MyFinalCS50Project) </h3>
+
+
 
 <h3 align="center">About Me</h3>
 <p align="center">I have never thought i would develop games, it all started with a video of The Coding Train on Youtube, he is a proggramer that does a lot of coding challenges in p5.js.</p>
